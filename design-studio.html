@@ -314,20 +314,21 @@
                     </div>
                 </div>
 
-                <!-- Action Buttons -->
+                <!-- Action Buttons: thêm id cho nút Add to Cart -->
                 <div class="mt-8 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-                    <button class="px-8 py-3 bg-giftme-primary text-white rounded-full hover:bg-opacity-90 transition-colors text-lg font-semibold flex items-center justify-center">
-                        <i class="fas fa-shopping-cart mr-3"></i>Add to Cart - 99,000 VND
+                    <button id="add-to-cart-btn"
+                        class="px-8 py-3 bg-giftme-primary text-white rounded-full hover:bg-opacity-90 transition-colors text-lg font-semibold flex items-center justify-center">
+                        <i class="fas fa-shopping-cart mr-3"></i>Add to Cart
                     </button>
-                    <button class="px-8 py-3 border-2 border-giftme-primary text-giftme-primary rounded-full hover:bg-giftme-primary hover:text-white transition-colors text-lg font-semibold flex items-center justify-center">
+                    <button
+                        class="px-8 py-3 border-2 border-giftme-primary text-giftme-primary rounded-full hover:bg-giftme-primary hover:text-white transition-colors text-lg font-semibold flex items-center justify-center">
                         <i class="fas fa-heart mr-3"></i>Save for Later
                     </button>
-                    <button class="px-8 py-3 border-2 border-giftme-secondary text-giftme-secondary rounded-full hover:bg-giftme-secondary hover:text-white transition-colors text-lg font-semibold flex items-center justify-center">
+                    <button
+                        class="px-8 py-3 border-2 border-giftme-secondary text-giftme-secondary rounded-full hover:bg-giftme-secondary hover:text-white transition-colors text-lg font-semibold flex items-center justify-center">
                         <i class="fas fa-share-alt mr-3"></i>Share Design
                     </button>
                 </div>
-            </div>
-        </div>
 
         <!-- Inspiration Section -->
         <div class="mt-16">
@@ -551,7 +552,36 @@
             // Set initial active color
             document.querySelector(".color-option").classList.add("ring-2", "ring-offset-2", "ring-giftme-primary");
         }
+         let selectedProduct = null; // Lưu sản phẩm đang chọn
 
+        function selectProduct(product) {
+            selectedProduct = product;
+
+            // Update preview message
+            const messageElement = document.getElementById("preview-message");
+            messageElement.textContent = `Personalized ${product.name}`;
+
+            // Update nút Add to Cart
+            const addToCartBtn = document.getElementById("add-to-cart-btn");
+            addToCartBtn.innerHTML = `<i class="fas fa-shopping-cart mr-3"></i>Add to Cart - ${product.price}`;
+
+            showNotification(`Selected: ${product.name}`);
+        }
+
+        // Cập nhật event cho nút Add to Cart
+        document.getElementById("add-to-cart-btn").addEventListener("click", function () {
+            if (!selectedProduct) {
+                showNotification("Please select a product first!");
+                return;
+            }
+            showNotification(`${selectedProduct.name} (${selectedProduct.price}) added to cart!`);
+
+            // Animate cart icon
+            const cartIcon = this.querySelector(".fa-shopping-cart").parentElement;
+            cartIcon?.classList.add("animate-bounce");
+            setTimeout(() => cartIcon?.classList.remove("animate-bounce"), 1000);
+        });
+        
         function loadProducts(category) {
             const productGrid = document.getElementById("product-grid");
             productGrid.innerHTML = "";
