@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base target="_self">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GiftMe | Personalized Gifts for Every Occasion</title>
+    <meta name="description" content="Create meaningful, personalized gifts at GiftMe. Custom physical gifts, emotional gifts, and unique experiences for yourself or loved ones.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'giftme-primary': '#FF6B8B',
+                        'giftme-secondary': '#4ECDC4',
+                        'giftme-accent': '#FFD166',
+                        'giftme-dark': '#2D3047',
+                        'giftme-light': '#F7F9FC',
+                        'giftme-pink': '#FFE4E9',
+                        'giftme-teal': '#E0F7F6',
+                        'giftme-yellow': '#FFF9E6'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'script': ['Dancing Script', 'cursive']
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'slide-up': 'slideUp 0.5s ease-out'
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, #FF6B8B 0%, #4ECDC4 100%);
+        }
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+        .testimonial-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        .product-card {
+            transition: all 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        @media (max-width: 768px) {
+            .parallax-bg {
+                background-attachment: scroll;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-white font-inter text-giftme-dark">
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 bg-white shadow-sm">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <div class="w-20 h-12 bg-gradient-to-w from-giftme-primary to-giftme-secondary rounded-full flex items-center justify-center">
+                        <img src="imgs/1.png" alt="logo">
+                    </div>
+                </div>
+
+                <!-- Main Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-giftme-primary font-semibold border-b-2 border-giftme-primary" onclick="event.preventDefault(); navigateTo('home')">Home</a>
+                    <a href="#" class="text-gray-600 hover:text-giftme-primary transition-colors" onclick="event.preventDefault(); navigateTo('shop')">Shop</a>
+                    <a href="#" class="text-gray-600 hover:text-giftme-primary transition-colors" onclick="event.preventDefault(); navigateTo('design-studio')">Design Studio</a>
+                    <a href="#" class="text-gray-600 hover:text-giftme-primary transition-colors" onclick="event.preventDefault(); navigateTo('inspiration')">Inspiration</a>
+                    <a href="#" class="text-gray-600 hover:text-giftme-primary transition-colors" onclick="event.preventDefault(); navigateTo('about')">About</a>
+                </div>
+
+                <!-- User Actions -->
+                <div class="flex items-center space-x-4">
+                    <button class="text-gray-600 hover:text-giftme-primary transition-colors">
+                        <i class="fas fa-search text-lg"></i>
+                    </button>
+                    <button class="text-gray-600 hover:text-giftme-primary transition-colors">
+                        <i class="fas fa-heart text-lg"></i>
+                    </button>
+                    <button class="text-gray-600 hover:text-giftme-primary transition-colors relative">
+                        <i class="fas fa-shopping-cart text-lg"></i>
+                        <span class="absolute -top-2 -right-2 bg-giftme-primary text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">3</span>
+                    </button>
+                    <button class="bg-giftme-primary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition-colors">
+                        <i class="fas fa-user mr-2"></i>Sign In
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-gray-600" id="mobile-menu-btn">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="md:hidden hidden mt-4 pt-4 border-t border-gray-100" id="mobile-menu">
+                <div class="flex flex-col space-y-3">
+                    <a href="#" class="text-giftme-primary font-semibold" onclick="event.preventDefault(); navigateTo('home')">Home</a>
+                    <a href="#" class="text-gray-600 hover:text-giftme-primary transition-colors" onclick="event.preventDefault(); navigateTo('shop')">Shop</a>
+                    <a href="#" class="text-gray-600 hover:text-giftme-primary transition-colors" onclick="event.preventDefault(); navigateTo('design-studio')">Design Studio</a>
+                    <a href="#" class="text-gray-600 hover:text-giftme-primary transition-colors" onclick="event.preventDefault(); navigateTo('inspiration')">Inspiration</a>
+                    <a href="#" class="text-gray-600 hover:text-giftme-primary transition-colors" onclick="event.preventDefault(); navigateTo('about')">About</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-gradient text-white overflow-hidden">
+            <div class="container mx-auto px-4 py-16 md:py-24">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <!-- Hero Content -->
+                    <div class="animate-slide-up">
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                            Create Gifts That
+                            <span class="block text-giftme-yellow font-script text-5xl md:text-6xl lg:text-7xl mt-2">Tell Your Story</span>
+                        </h1>
+                        <p class="text-xl mb-8 text-white text-opacity-90 max-w-2xl">
+                            Design personalized gifts that capture emotions, preserve memories, and create meaningful connections. 
+                            From physical keepsakes to emotional experiences, make every gift uniquely yours.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button class="bg-white text-giftme-primary px-8 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all transform hover:-translate-y-1 shadow-lg">
+                                <i class="fas fa-palette mr-2"></i>Start Designing
+                            </button>
+                            <button class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-giftme-primary transition-all">
+                                <i class="fas fa-shopping-bag mr-2"></i>Shop Collections
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Hero Image -->
+                    <div class="relative">
+                        <div class="relative z-10">
+                            <div class="bg-white rounded-2xl shadow-2xl p-6 transform rotate-3">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="bg-giftme-pink rounded-xl p-4 flex flex-col items-center justify-center h-40">
+                                        <i class="fas fa-mug-hot text-3xl text-giftme-primary mb-3"></i>
+                                        <span class="font-semibold text-giftme-dark">Personalized Mugs</span>
+                                    </div>
+                                    <div class="bg-giftme-teal rounded-xl p-4 flex flex-col items-center justify-center h-40">
+                                        <i class="fas fa-book text-3xl text-giftme-secondary mb-3"></i>
+                                        <span class="font-semibold text-giftme-dark">Custom Journals</span>
+                                    </div>
+                                    <div class="bg-giftme-yellow rounded-xl p-4 flex flex-col items-center justify-center h-40">
+                                        <i class="fas fa-heart text-3xl text-giftme-accent mb-3"></i>
+                                        <span class="font-semibold text-giftme-dark">Emotional Gifts</span>
+                                    </div>
+                                    <div class="bg-gradient-to-r from-giftme-primary to-giftme-secondary rounded-xl p-4 flex flex-col items-center justify-center h-40">
+                                        <i class="fas fa-gift text-3xl text-white mb-3"></i>
+                                        <span class="font-semibold text-white">Gift Bundles</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute -top-6 -right-6 w-32 h-32 bg-giftme-accent rounded-full opacity-20 animate-float"></div>
+                        <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-giftme-secondary rounded-full opacity-20 animate-pulse-slow"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Categories -->
+        <section class="py-16 bg-giftme-light">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                        <span class="text-giftme-dark">Find the Perfect</span>
+                        <span class="text-giftme-primary"> Gift Type</span>
+                    </h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">
+                        Choose from our curated collection of personalized gift categories, each designed to help you express your feelings in the most meaningful way.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Physical Gifts Card -->
+                    <div class="category-card bg-white rounded-2xl shadow-lg p-6 cursor-pointer transition-all duration-300">
+                        <div class="w-16 h-16 bg-gradient-to-r from-giftme-primary to-pink-400 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <i class="fas fa-box-open text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-center mb-3">Physical Gifts</h3>
+                        <p class="text-gray-600 text-center mb-4">
+                            Custom mugs, apparel, home decor, and tangible keepsakes that last forever
+                        </p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check text-giftme-primary mr-2"></i>
+                                Mugs & Drinkware
+                            </li>
+                            <li class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check text-giftme-primary mr-2"></i>
+                                Apparel & Accessories
+                            </li>
+                            <li class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check text-giftme-primary mr-2"></i>
+                                Home & Decor
+                            </li>
+                        </ul>
+                        <button class="w-full py-2 bg-giftme-primary text-white rounded-lg hover:bg-opacity-90 transition-colors">
+                            Explore Collection
+                        </button>
+                    </div>
+
+                    <!-- Emotional Gifts Card -->
+                    <div class="category-card bg-white rounded-2xl shadow-lg p-6 cursor-pointer transition-all duration-300">
+                        <div class="w-16 h-16 bg-gradient-to-r from-giftme-secondary to-cyan-400 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <i class="fas fa-heart text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-center mb-3">Emotional Gifts</h3>
+                        <p class="text-gray-600 text-center mb-4">
+                            Digital letters, video messages, and time capsules that capture feelings
+                        </p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check text-giftme-secondary mr-2"></i>
+                                Digital Letters
+                            </li>
+                            <li class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check text-giftme-secondary mr-2"></i>
+                                Video Messages
+                            </li>
+                            <li class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check text-giftme-secondary mr-2"></i>
+                                Time Capsules
+                            </li>
+                        </ul>
+                        <button class="w-full py-2 bg-giftme-secondary text-white rounded-lg hover:bg-opacity-90 transition-colors">
+                            Explore Collection
+                        </button>
+                    </div>
+
+                    <!-- For Occasions Card -->
+                    <div class="category-card bg-white rounded-2xl shadow-lg p-6 cursor-pointer transition-all duration-300">
+                        <div class="w-16 h-16 bg-gradient-to-r from-giftme-accent to-yellow-400 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <i class="fas fa-calendar-alt text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-center mb-3">For Occasions</h3>
+                        <p class="text-gray-600 text-center mb-4">
+                            Perfect gifts for birthdays, anniversaries, graduations, and special moments
+                        </p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check text-giftme-accent mr-2"></i>
+                                Birthdays
+                            </li>
+                            <li class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check text-giftme-accent mr-2"></i>
+                                Anniversaries
+                            </li>
+                            <li class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check text-giftme-accent mr-2"></i>
+                                Graduations
+                            </li>
+                        </ul>
+                        <button class="w-full py-2 bg-giftme-accent text-giftme-dark rounded-lg hover:bg-opacity-90 transition-colors">
+                            Explore Collection
+                        </button>
+                    </div>
+
+                    <!-- Gift Bundles Card -->
+                    <div class="category-card bg-white rounded-2xl shadow-lg p-6 cursor-pointer transition-all duration-300">
+                        <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <i class="fas fa-star text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-center mb-3">Gift Bundles</h3>
+                        <p class="text-gray-600 text-center mb-4">
+                            Curated collections combining multiple personalized items for maximum impact
+                        </p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check text-purple-500 mr-2"></i>
+                                Celebration Sets
+                            </li>
+                            <li class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check text-purple-500 mr-2"></i>
+                                Memory Boxes
+                            </li>
+                            <li class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check text-purple-500 mr-2"></i>
+                                Premium Collections
+                            </li>
+                        </ul>
+                        <button class="w-full py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:opacity-90 transition-colors">
+                            Explore Collection
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                        <span class="text-giftme-dark">Create Your Perfect Gift in</span>
+                        <span class="text-giftme-primary"> 3 Simple Steps</span>
+                    </h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">
+                        Our intuitive design process makes it easy to create meaningful, personalized gifts that truly reflect your feelings.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Step 1 -->
+                    <div class="text-center">
+                        <div class="relative mb-6">
+                            <div class="w-20 h-20 bg-giftme-pink rounded-full flex items-center justify-center mx-auto">
+                                <i class="fas fa-mouse-pointer text-giftme-primary text-3xl"></i>
+                            </div>
+                            <div class="absolute top-0 right-1/2 translate-x-1/2 md:translate-x-0 md:right-0 w-8 h-8 bg-giftme-primary text-white rounded-full flex items-center justify-center font-bold">
+                                1
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Choose Your Gift</h3>
+                        <p class="text-gray-600">
+                            Select from our wide range of physical gifts, emotional experiences, or create your own custom bundle.
+                        </p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="text-center">
+                        <div class="relative mb-6">
+                            <div class="w-20 h-20 bg-giftme-teal rounded-full flex items-center justify-center mx-auto">
+                                <i class="fas fa-palette text-giftme-secondary text-3xl"></i>
+                            </div>
+                            <div class="absolute top-0 right-1/2 translate-x-1/2 md:translate-x-0 md:right-0 w-8 h-8 bg-giftme-secondary text-white rounded-full flex items-center justify-center font-bold">
+                                2
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Personalize It</h3>
+                        <p class="text-gray-600">
+                            Add photos, write heartfelt messages, choose colors, and customize every detail in our Design Studio.
+                        </p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="text-center">
+                        <div class="relative mb-6">
+                            <div class="w-20 h-20 bg-giftme-yellow rounded-full flex items-center justify-center mx-auto">
+                                <i class="fas fa-gift text-giftme-accent text-3xl"></i>
+                            </div>
+                            <div class="absolute top-0 right-1/2 translate-x-1/2 md:translate-x-0 md:right-0 w-8 h-8 bg-giftme-accent text-giftme-dark rounded-full flex items-center justify-center font-bold">
+                                3
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Share the Love</h3>
+                        <p class="text-gray-600">
+                            Schedule delivery, add gift notes, and create unforgettable moments for yourself or loved ones.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="text-center mt-12">
+                    <button class="bg-gradient-to-r from-giftme-primary to-giftme-secondary text-white px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-all shadow-lg">
+                        <i class="fas fa-play-circle mr-2"></i>Start Creating Now
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Products -->
+        <section class="py-16 bg-giftme-light">
+            <div class="container mx-auto px-4">
+                <div class="flex justify-between items-center mb-8">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold">
+                            <span class="text-giftme-dark">Featured</span>
+                            <span class="text-giftme-primary"> Personalized Gifts</span>
+                        </h2>
+                        <p class="text-gray-600 mt-2">Most loved creations from our community</p>
+                    </div>
+                    <button class="text-giftme-primary font-semibold hover:underline">
+                        View All <i class="fas fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Product 1 -->
+                    <div class="product-card bg-white rounded-2xl shadow-md overflow-hidden">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://picsum.photos/400/300?random=1" alt="Personalized photo mug with couple picture" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110" loading="lazy">
+                            <div class="absolute top-3 left-3 bg-giftme-primary text-white text-xs px-2 py-1 rounded-full">
+                                Best Seller
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg mb-1">Memory Lane Mug</h3>
+                            <p class="text-gray-600 text-sm mb-3">Custom photo mug with your favorite memories</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-giftme-primary font-bold text-lg">$24.99</span>
+                                <button class="bg-giftme-primary text-white p-2 rounded-full hover:bg-opacity-90 transition-colors">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 2 -->
+                    <div class="product-card bg-white rounded-2xl shadow-md overflow-hidden">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://picsum.photos/400/300?random=2" alt="Custom leather journal with engraved name" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110" loading="lazy">
+                            <div class="absolute top-3 left-3 bg-giftme-secondary text-white text-xs px-2 py-1 rounded-full">
+                                New
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg mb-1">Storyteller Journal</h3>
+                            <p class="text-gray-600 text-sm mb-3">Leather-bound journal with name engraving</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-giftme-primary font-bold text-lg">$32.99</span>
+                                <button class="bg-giftme-primary text-white p-2 rounded-full hover:bg-opacity-90 transition-colors">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 3 -->
+                    <div class="product-card bg-white rounded-2xl shadow-md overflow-hidden">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://picsum.photos/400/300?random=3" alt="Personalized tote bag with custom design" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110" loading="lazy">
+                            <div class="absolute top-3 left-3 bg-giftme-accent text-giftme-dark text-xs px-2 py-1 rounded-full">
+                                Eco-Friendly
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg mb-1">Canvas Tote Bag</h3>
+                            <p class="text-gray-600 text-sm mb-3">Eco-friendly tote with your custom artwork</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-giftme-primary font-bold text-lg">$19.99</span>
+                                <button class="bg-giftme-primary text-white p-2 rounded-full hover:bg-opacity-90 transition-colors">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 4 -->
+                    <div class="product-card bg-white rounded-2xl shadow-md overflow-hidden">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://picsum.photos/400/300?random=4" alt="Digital love letter with floral design" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110" loading="lazy">
+                            <div class="absolute top-3 left-3 bg-purple-500 text-white text-xs px-2 py-1 rounded-full">
+                                Digital
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg mb-1">Love Letter Bundle</h3>
+                            <p class="text-gray-600 text-sm mb-3">Digital love letters with scheduled delivery</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-giftme-primary font-bold text-lg">$14.99</span>
+                                <button class="bg-giftme-primary text-white p-2 rounded-full hover:bg-opacity-90 transition-colors">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                        <span class="text-giftme-dark">Stories of</span>
+                        <span class="text-giftme-primary"> Meaningful Connections</span>
+                    </h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">
+                        See how our community uses personalized gifts to create unforgettable moments and strengthen relationships.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-card bg-giftme-pink rounded-2xl p-6">
+                        <div class="flex items-center mb-4">
+                            <img src="https://picsum.photos/60?random=5" alt="Sarah Johnson" class="w-12 h-12 rounded-full object-cover">
+                            <div class="ml-4">
+                                <h4 class="font-semibold">Sarah Johnson</h4>
+                                <p class="text-sm text-gray-600">Birthday Gift for Mom</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 mb-4">
+                            "The personalized mug I created for my mom's birthday brought tears to her eyes. Seeing our family photos on it every morning makes her day special. Thank you GiftMe!"
+                        </p>
+                        <div class="flex text-giftme-accent">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-card bg-giftme-teal rounded-2xl p-6">
+                        <div class="flex items-center mb-4">
+                            <img src="https://picsum.photos/60?random=6" alt="Michael Chen" class="w-12 h-12 rounded-full object-cover">
+                            <div class="ml-4">
+                                <h4 class="font-semibold">Michael Chen</h4>
+                                <p class="text-sm text-gray-600">Anniversary Surprise</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 mb-4">
+                            "I scheduled a digital love letter to be delivered on our anniversary. My wife was so touched by the heartfelt message and our wedding photos. It's the gift that keeps giving!"
+                        </p>
+                        <div class="flex text-giftme-accent">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-card bg-giftme-yellow rounded-2xl p-6">
+                        <div class="flex items-center mb-4">
+                            <img src="https://picsum.photos/60?random=7" alt="Emma Rodriguez" class="w-12 h-12 rounded-full object-cover">
+                            <div class="ml-4">
+                                <h4 class="font-semibold">Emma Rodriguez</h4>
+                                <p class="text-sm text-gray-600">Graduation Gift</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 mb-4">
+                            "The custom journal I made for my sister's graduation captured all our childhood memories. She uses it every day to write her thoughts. Such a meaningful gift!"
+                        </p>
+                        <div class="flex text-giftme-accent">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-16 bg-gradient-to-r from-giftme-dark to-giftme-primary text-white">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                    Ready to Create Something Meaningful?
+                </h2>
+                <p class="text-xl mb-8 text-white text-opacity-90 max-w-2xl mx-auto">
+                    Join thousands of people who are using GiftMe to express love, celebrate milestones, and create lasting memories.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="bg-white text-giftme-primary px-8 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all shadow-lg">
+                        <i class="fas fa-palette mr-2"></i>Start Designing Free
+                    </button>
+                    <button class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-giftme-primary transition-all">
+                        <i class="fas fa-play-circle mr-2"></i>Watch Tutorial
+                    </button>
+                </div>
+                <p class="mt-6 text-white text-opacity-80">
+                    No design skills needed • 100% satisfaction guarantee • Free design assistance
+                </p>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="py-12 bg-white border-t border-gray-100">
+            <div class="container mx-auto px-4">
+                <div class="max-w-2xl mx-auto text-center">
+                    <h3 class="text-2xl font-bold mb-3">Get Inspired Weekly</h3>
+                    <p class="text-gray-600 mb-6">
+                        Subscribe to our newsletter for design tips, gift ideas, and exclusive offers.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-giftme-primary focus:border-transparent">
+                        <button class="bg-giftme-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-colors">
+                            Subscribe
+                        </button>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-4">
+                        We respect your privacy. Unsubscribe at any time.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-giftme-dark text-white">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-r from-giftme-primary to-giftme-secondary rounded-full flex items-center justify-center">
+                            <i class="fas fa-gift text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Gift<span class="text-giftme-primary">Me</span></h3>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Creating meaningful connections through personalized gifts. Every gift tells a story.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-giftme-primary transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-giftme-primary transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-giftme-primary transition-colors">
+                            <i class="fab fa-pinterest"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-giftme-primary transition-colors">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Shop Gifts</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-giftme-primary transition-colors" onclick="event.preventDefault(); navigateTo('physical-gifts')">Physical Gifts</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-giftme-primary transition-colors" onclick="event.preventDefault(); navigateTo('emotional-gifts')">Emotional Gifts</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-giftme-primary transition-colors" onclick="event.preventDefault(); navigateTo('occasion-gifts')">For Occasions</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-giftme-primary transition-colors" onclick="event.preventDefault(); navigateTo('gift-bundles')">Gift Bundles</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Help & Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-giftme-primary transition-colors" onclick="event.preventDefault(); navigateTo('faq')">FAQ</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-giftme-primary transition-colors" onclick="event.preventDefault(); navigateTo('shipping')">Shipping Info</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-giftme-primary transition-colors" onclick="event.preventDefault(); navigateTo('returns')">Returns & Exchanges</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-giftme-primary transition-colors" onclick="event.preventDefault(); navigateTo('contact')">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-gray-300">
+                            <i class="fas fa-envelope text-giftme-primary mr-3"></i>
+                            hello@giftme.com
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i class="fas fa-phone text-giftme-primary mr-3"></i>
+                            +1 (555) 123-4567
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i class="fas fa-map-marker-alt text-giftme-primary mr-3"></i>
+                            123 Gift Street, Creative City
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
+                <p>&copy; 2024 GiftMe. All rights reserved. | 
+                    <a href="#" class="hover:text-giftme-primary transition-colors" onclick="event.preventDefault(); navigateTo('privacy')">Privacy Policy</a> | 
+                    <a href="#" class="hover:text-giftme-primary transition-colors" onclick="event.preventDefault(); navigateTo('terms')">Terms of Service</a> | 
+                    <a href="#" class="hover:text-giftme-primary transition-colors" onclick="event.preventDefault(); navigateTo('cookies')">Cookie Policy</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Define data at the beginning
+        const testimonials = [
+            {
+                "name": "Sarah Johnson",
+                "role": "Birthday Gift for Mom",
+                "content": "The personalized mug I created for my mom's birthday brought tears to her eyes. Seeing our family photos on it every morning makes her day special. Thank you GiftMe!",
+                "rating": 5,
+                "image": "https://picsum.photos/60?random=5"
+            },
+            {
+                "name": "Michael Chen",
+                "role": "Anniversary Surprise",
+                "content": "I scheduled a digital love letter to be delivered on our anniversary. My wife was so touched by the heartfelt message and our wedding photos. It's the gift that keeps giving!",
+                "rating": 5,
+                "image": "https://picsum.photos/60?random=6"
+            },
+            {
+                "name": "Emma Rodriguez",
+                "role": "Graduation Gift",
+                "content": "The custom journal I made for my sister's graduation captured all our childhood memories. She uses it every day to write her thoughts. Such a meaningful gift!",
+                "rating": 5,
+                "image": "https://picsum.photos/60?random=7"
+            }
+        ];
+
+        const featuredProducts = [
+            {
+                "id": 1,
+                "name": "Memory Lane Mug",
+                "description": "Custom photo mug with your favorite memories",
+                "price": "$24.99",
+                "badge": "Best Seller",
+                "badgeColor": "bg-giftme-primary",
+                "image": "https://picsum.photos/400/300?random=1"
+            },
+            {
+                "id": 2,
+                "name": "Storyteller Journal",
+                "description": "Leather-bound journal with name engraving",
+                "price": "$32.99",
+                "badge": "New",
+                "badgeColor": "bg-giftme-secondary",
+                "image": "https://picsum.photos/400/300?random=2"
+            },
+            {
+                "id": 3,
+                "name": "Canvas Tote Bag",
+                "description": "Eco-friendly tote with your custom artwork",
+                "price": "$19.99",
+                "badge": "Eco-Friendly",
+                "badgeColor": "bg-giftme-accent",
+                "image": "https://picsum.photos/400/300?random=3"
+            },
+            {
+                "id": 4,
+                "name": "Love Letter Bundle",
+                "description": "Digital love letters with scheduled delivery",
+                "price": "$14.99",
+                "badge": "Digital",
+                "badgeColor": "bg-purple-500",
+                "image": "https://picsum.photos/400/300?random=4"
+            }
+        ];
+
+        // Initialize page
+        document.addEventListener("DOMContentLoaded", function() {
+            initializeHomepage();
+            setupEventListeners();
+            setupAnimations();
+        });
+
+        function initializeHomepage() {
+            // Add animation classes
+            const heroContent = document.querySelector('.animate-slide-up');
+            if (heroContent) {
+                heroContent.style.animation = 'slideUp 0.5s ease-out';
+            }
+
+            // Initialize mobile menu
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        }
+
+        function setupEventListeners() {
+            // Category cards
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const button = this.querySelector('button');
+                    if (button) {
+                        const category = button.textContent.trim().replace('Explore ', '').replace('Collection', '').trim();
+                        navigateTo(category.toLowerCase().replace(' ', '-'));
+                    }
+                });
+            });
+
+            // Product cards
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const productName = this.querySelector('h3').textContent;
+                    showNotification(`Added ${productName} to cart!`);
+                    
+                    // Animate cart icon
+                    const cartIcon = document.querySelector('.fa-shopping-cart').parentElement;
+                    cartIcon.classList.add('animate-bounce');
+                    setTimeout(() => {
+                        cartIcon.classList.remove('animate-bounce');
+                    }, 1000);
+                });
+            });
+
+            // CTA buttons
+            document.querySelectorAll('button').forEach(button => {
+                if (button.textContent.includes('Start Designing') || button.textContent.includes('Start Creating')) {
+                    button.addEventListener('click', function() {
+                        navigateTo('design-studio');
+                    });
+                }
+                
+                if (button.textContent.includes('Shop Collections')) {
+                    button.addEventListener('click', function() {
+                        navigateTo('shop');
+                    });
+                }
+            });
+
+            // Newsletter subscription
+            const subscribeBtn = document.querySelector('button:contains("Subscribe")');
+            if (subscribeBtn) {
+                subscribeBtn.addEventListener('click', function() {
+                    const emailInput = this.previousElementSibling;
+                    if (emailInput && emailInput.value) {
+                        showNotification('Thank you for subscribing to our newsletter!');
+                        emailInput.value = '';
+                    } else {
+                        showNotification('Please enter your email address.');
+                    }
+                });
+            }
+        }
+
+        function setupAnimations() {
+            // Add intersection observer for scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-slide-up');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for animation
+            document.querySelectorAll('.category-card, .testimonial-card, .product-card').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        function navigateTo(page) {
+            // Show loading notification
+            const pageName = page.replace(/-/g, ' ');
+            showNotification(`Navigating to ${pageName}...`);
+            
+            // In a real application, this would handle routing
+            // For demo purposes, we'll simulate navigation
+            setTimeout(() => {
+                if (page === 'design-studio') {
+                    // Redirect to design studio page
+                    window.location.href = 'design-studio.html';
+                } else if (page === 'shop') {
+                    // Redirect to shop page
+                    window.location.href = 'shop.html';
+                } else {
+                    // For other pages, show a message
+                    showNotification(`This would navigate to the ${pageName} page in a real application.`);
+                }
+            }, 500);
+        }
+
+        function showNotification(message) {
+            // Remove existing notification
+            const existingNotification = document.getElementById('temp-notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.id = 'temp-notification';
+            notification.className = 'fixed top-4 right-4 bg-giftme-primary text-white px-6 py-3 rounded-lg shadow-lg transform translate-x-full opacity-0 transition-all duration-300 z-50';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            // Animate in
+            setTimeout(() => {
+                notification.classList.remove('translate-x-full', 'opacity-0');
+                notification.classList.add('translate-x-0', 'opacity-100');
+            }, 10);
+
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.classList.remove('translate-x-0', 'opacity-100');
+                notification.classList.add('translate-x-full', 'opacity-0');
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (window.innerWidth >= 768 && mobileMenu) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // Add scroll effect to header
+        let lastScroll = 0;
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+    </script>
+</body>
+</html>

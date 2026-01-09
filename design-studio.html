@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base target="_self">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Studio - GiftMe | Create Personalized Gifts</title>
+    <meta name="description" content="Design your perfect personalized gift at GiftMe Design Studio. Customize physical gifts, emotional gifts, and create meaningful experiences for yourself or loved ones.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'giftme-primary': '#FF6B8B',
+                        'giftme-secondary': '#4ECDC4',
+                        'giftme-accent': '#FFD166',
+                        'giftme-dark': '#2D3047',
+                        'giftme-light': '#F7F9FC'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'script': ['Dancing Script', 'cursive']
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite'
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #FF6B8B;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #ff4d6d;
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        .color-option:hover {
+            transform: scale(1.2);
+        }
+        .preview-container {
+            perspective: 1000px;
+        }
+        .preview-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-giftme-light font-inter text-giftme-dark">
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 bg-white shadow-lg">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <div class="w-20 h-12 bg-gradient-to-w from-giftme-primary to-giftme-secondary rounded-full flex items-center justify-center">
+                        <img src="imgs/1.png" alt="logo">
+                    </div>
+                </div>
+
+                <!-- Main Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-gray-600 hover:text-giftme-primary transition-colors" onclick="event.preventDefault(); navigateTo('home')">Home</a>
+                    <a href="#" class="text-gray-600 hover:text-giftme-primary transition-colors" onclick="event.preventDefault(); navigateTo('shop')">Shop</a>
+                    <a href="#" class="text-giftme-primary font-semibold border-b-2 border-giftme-primary" onclick="event.preventDefault(); navigateTo('design-studio')">Design Studio</a>
+                    <a href="#" class="text-gray-600 hover:text-giftme-primary transition-colors" onclick="event.preventDefault(); navigateTo('inspiration')">Inspiration</a>
+                    <a href="#" class="text-gray-600 hover:text-giftme-primary transition-colors" onclick="event.preventDefault(); navigateTo('about')">About</a>
+                </div>
+
+                <!-- User Actions -->
+                <div class="flex items-center space-x-4">
+                    <button class="text-gray-600 hover:text-giftme-primary transition-colors">
+                        <i class="fas fa-search text-lg"></i>
+                    </button>
+                    <button class="text-gray-600 hover:text-giftme-primary transition-colors">
+                        <i class="fas fa-heart text-lg"></i>
+                    </button>
+                    <button class="text-gray-600 hover:text-giftme-primary transition-colors">
+                        <i class="fas fa-shopping-cart text-lg"></i>
+                    </button>
+                    <button class="bg-giftme-primary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition-colors">
+                        <i class="fas fa-user mr-2"></i>Sign In
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-gray-600">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <!-- Design Studio Header -->
+        <div class="text-center mb-12">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                <span class="text-giftme-dark">Design</span>
+                <span class="text-giftme-primary">Studio</span>
+            </h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                Create personalized gifts that tell your story. Customize every detail to make each gift uniquely yours - 
+                whether for loved ones or for your future self.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Column: Product Selection -->
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+                    <h3 class="text-xl font-semibold mb-4 text-giftme-dark">Choose Your Gift Type</h3>
+                    
+                    <!-- Category Tabs -->
+                    <div class="flex space-x-2 mb-6">
+                        <button class="category-tab active px-4 py-2 rounded-full bg-giftme-primary text-white" data-category="physical">
+                            Physical Gifts
+                        </button>
+                        <button class="category-tab px-4 py-2 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200" data-category="emotional">
+                            Emotional Gifts
+                        </button>
+                    </div>
+
+                    <!-- Product Grid -->
+                    <div class="grid grid-cols-2 gap-4" id="product-grid">
+                        <!-- Products will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Customization Options -->
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <h3 class="text-xl font-semibold mb-4 text-giftme-dark">Customization Options</h3>
+                    
+                    <!-- Text Customization -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Personal Message</label>
+                    <textarea 
+                        id="message-input" 
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-giftme-primary focus:border-transparent" 
+                        rows="3" 
+                        placeholder="Write your heartfelt message here...">To my dearest friend, may this gift remind you of our beautiful memories together.</textarea>
+                    </div>
+
+                    <!-- Color Selection -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Choose Color</label>
+                        <div class="flex space-x-3">
+                            <div class="color-option w-8 h-8 rounded-full bg-giftme-primary cursor-pointer border-2 border-white shadow-md" data-color="#FF6B8B"></div>
+                            <div class="color-option w-8 h-8 rounded-full bg-giftme-secondary cursor-pointer border-2 border-white shadow-md" data-color="#4ECDC4"></div>
+                            <div class="color-option w-8 h-8 rounded-full bg-giftme-accent cursor-pointer border-2 border-white shadow-md" data-color="#FFD166"></div>
+                            <div class="color-option w-8 h-8 rounded-full bg-giftme-dark cursor-pointer border-2 border-white shadow-md" data-color="#2D3047"></div>
+                            <div class="color-option w-8 h-8 rounded-full bg-purple-500 cursor-pointer border-2 border-white shadow-md" data-color="#8A4FFF"></div>
+                        </div>
+                    </div>
+
+                    <!-- Font Selection -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Choose Font Style</label>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button class="font-option px-3 py-2 border rounded-lg text-center hover:border-giftme-primary" data-font="inter">
+                                <span class="font-inter">Modern</span>
+                            </button>
+                            <button class="font-option px-3 py-2 border rounded-lg text-center hover:border-giftme-primary" data-font="script">
+                                <span class="font-script">Elegant</span>
+                            </button>
+                            <button class="font-option px-3 py-2 border rounded-lg text-center hover:border-giftme-primary" data-font="serif">
+                                <span class="font-serif">Classic</span>
+                            </button>
+                            <button class="font-option px-3 py-2 border rounded-lg text-center hover:border-giftme-primary" data-font="mono">
+                                <span class="font-mono">Minimal</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Upload Image -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Upload Your Image</label>
+                        <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-giftme-primary transition-colors cursor-pointer">
+                            <i class="fas fa-cloud-upload-alt text-3xl text-gray-400 mb-2"></i>
+                            <p class="text-gray-500">Click to upload or drag and drop</p>
+                            <p class="text-sm text-gray-400 mt-1">PNG, JPG up to 5MB</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Middle Column: Live Preview -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-semibold text-giftme-dark">Live Preview</h3>
+                        <div class="flex space-x-2">
+                            <button class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+                                <i class="fas fa-rotate-left mr-2"></i>Reset
+                            </button>
+                            <button class="px-4 py-2 bg-giftme-primary text-white rounded-lg hover:bg-opacity-90">
+                                <i class="fas fa-download mr-2"></i>Save Design
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Preview Container -->
+                    <div class="preview-container bg-gradient-to-br from-giftme-light to-gray-100 rounded-xl p-8 min-h-[500px] flex items-center justify-center">
+                        <div class="preview-3d w-full max-w-md">
+                            <!-- Mug Preview -->
+                            <div class="relative mx-auto" id="product-preview">
+                                <div class="bg-white rounded-lg shadow-2xl p-8 transform rotate-3">
+                                    <div class="text-center mb-6">
+                                        <div class="text-2xl font-script text-giftme-primary mb-2" id="preview-message">
+                                            To my dearest friend
+                                        </div>
+                                        <div class="text-gray-600" id="preview-submessage">
+                                            May this gift remind you of our beautiful memories
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-center mb-6">
+                                        <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-giftme-accent">
+                                            <img src="https://picsum.photos/200?random=1" alt="Uploaded personal image" class="w-full h-full object-cover" id="preview-image">
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="inline-block px-4 py-2 bg-giftme-primary text-white rounded-full text-sm">
+                                            <i class="fas fa-heart mr-2"></i>Made with Love
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-giftme-secondary rounded-full opacity-20 animate-pulse-slow"></div>
+                                <div class="absolute -top-4 -left-4 w-16 h-16 bg-giftme-accent rounded-full opacity-20 animate-float"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Preview Controls -->
+                    <div class="mt-6 flex justify-center space-x-4">
+                        <button class="preview-control px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50" data-rotate="left">
+                            <i class="fas fa-undo"></i> Rotate Left
+                        </button>
+                        <button class="preview-control px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50" data-rotate="right">
+                            Rotate Right <i class="fas fa-redo"></i>
+                        </button>
+                        <button class="preview-control px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50" data-zoom="in">
+                            <i class="fas fa-search-plus"></i> Zoom In
+                        </button>
+                        <button class="preview-control px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50" data-zoom="out">
+                            <i class="fas fa-search-minus"></i> Zoom Out
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Additional Options -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Packaging Options -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                        <h4 class="text-lg font-semibold mb-4 text-giftme-dark">
+                            <i class="fas fa-box-open text-giftme-primary mr-2"></i>Packaging Style
+                        </h4>
+                        <div class="space-y-3">
+                            <label class="flex items-center space-x-3 cursor-pointer">
+                                <input type="radio" name="packaging" class="text-giftme-primary" checked>
+                                <span class="text-gray-700">Eco-Friendly Kraft Box</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer">
+                                <input type="radio" name="packaging" class="text-giftme-primary">
+                                <span class="text-gray-700">Premium Gift Box with Ribbon</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer">
+                                <input type="radio" name="packaging" class="text-giftme-primary">
+                                <span class="text-gray-700">Minimalist Clear Box</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer">
+                                <input type="radio" name="packaging" class="text-giftme-primary">
+                                <span class="text-gray-700">Vintage Wooden Box</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Delivery Options -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                        <h4 class="text-lg font-semibold mb-4 text-giftme-dark">
+                            <i class="fas fa-shipping-fast text-giftme-primary mr-2"></i>Delivery & Timing
+                        </h4>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Delivery Date</label>
+                                <input type="date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-giftme-primary">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Add Gift Note</label>
+                                <textarea class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-giftme-primary" rows="2" placeholder="Add a personal note for delivery..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="mt-8 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                    <button class="px-8 py-3 bg-giftme-primary text-white rounded-full hover:bg-opacity-90 transition-colors text-lg font-semibold flex items-center justify-center">
+                        <i class="fas fa-shopping-cart mr-3"></i>Add to Cart - $24.99
+                    </button>
+                    <button class="px-8 py-3 border-2 border-giftme-primary text-giftme-primary rounded-full hover:bg-giftme-primary hover:text-white transition-colors text-lg font-semibold flex items-center justify-center">
+                        <i class="fas fa-heart mr-3"></i>Save for Later
+                    </button>
+                    <button class="px-8 py-3 border-2 border-giftme-secondary text-giftme-secondary rounded-full hover:bg-giftme-secondary hover:text-white transition-colors text-lg font-semibold flex items-center justify-center">
+                        <i class="fas fa-share-alt mr-3"></i>Share Design
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inspiration Section -->
+        <div class="mt-16">
+            <div class="text-center mb-8">
+                <h3 class="text-3xl font-bold text-giftme-dark mb-2">Design Inspiration</h3>
+                <p class="text-gray-600">Get inspired by popular designs from our creative community</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <div class="p-6">
+                        <div class="w-16 h-16 bg-gradient-to-r from-pink-300 to-purple-300 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <i class="fas fa-birthday-cake text-white text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold text-center mb-2">Birthday Memories</h4>
+                        <p class="text-gray-600 text-center mb-4">Personalized mugs with birthday photos and messages</p>
+                        <button class="w-full py-2 border border-giftme-primary text-giftme-primary rounded-lg hover:bg-giftme-primary hover:text-white transition-colors">
+                            Use This Design
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <div class="p-6">
+                        <div class="w-16 h-16 bg-gradient-to-r from-blue-300 to-cyan-300 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <i class="fas fa-heart text-white text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold text-center mb-2">Anniversary Love</h4>
+                        <p class="text-gray-600 text-center mb-4">Romantic gifts with couple photos and love notes</p>
+                        <button class="w-full py-2 border border-giftme-primary text-giftme-primary rounded-lg hover:bg-giftme-primary hover:text-white transition-colors">
+                            Use This Design
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <div class="p-6">
+                        <div class="w-16 h-16 bg-gradient-to-r from-yellow-300 to-orange-300 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <i class="fas fa-graduation-cap text-white text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold text-center mb-2">Graduation Pride</h4>
+                        <p class="text-gray-600 text-center mb-4">Celebratory gifts for academic achievements</p>
+                        <button class="w-full py-2 border border-giftme-primary text-giftme-primary rounded-lg hover:bg-giftme-primary hover:text-white transition-colors">
+                            Use This Design
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-giftme-dark text-white mt-16">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-r from-giftme-primary to-giftme-secondary rounded-full flex items-center justify-center">
+                            <i class="fas fa-gift text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Gift<span class="text-giftme-primary">Me</span></h3>
+                    </div>
+                    <p class="text-gray-300">
+                        Creating meaningful connections through personalized gifts. Every gift tells a story.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-giftme-primary transition-colors" onclick="event.preventDefault(); navigateTo('home')">Home</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-giftme-primary transition-colors" onclick="event.preventDefault(); navigateTo('shop')">Shop All Gifts</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-giftme-primary transition-colors" onclick="event.preventDefault(); navigateTo('design-studio')">Design Studio</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-giftme-primary transition-colors" onclick="event.preventDefault(); navigateTo('inspiration')">Inspiration Gallery</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-giftme-primary transition-colors" onclick="event.preventDefault(); navigateTo('help')">Help Center</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-giftme-primary transition-colors" onclick="event.preventDefault(); navigateTo('shipping')">Shipping Info</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-giftme-primary transition-colors" onclick="event.preventDefault(); navigateTo('returns')">Returns & Exchanges</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-giftme-primary transition-colors" onclick="event.preventDefault(); navigateTo('contact')">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Stay Inspired</h4>
+                    <p class="text-gray-300 mb-4">Get design tips and exclusive offers</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" class="flex-grow px-4 py-2 rounded-l-lg text-gray-800">
+                        <button class="bg-giftme-primary px-4 py-2 rounded-r-lg hover:bg-opacity-90 transition-colors">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
+                <p>&copy; 2024 GiftMe. All rights reserved. | <a href="#" class="hover:text-giftme-primary transition-colors" onclick="event.preventDefault(); navigateTo('privacy')">Privacy Policy</a> | <a href="#" class="hover:text-giftme-primary transition-colors" onclick="event.preventDefault(); navigateTo('terms')">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Define data at the beginning
+        const products = {
+            "physical": [
+                {
+                    "id": 1,
+                    "name": "Personalized Mug",
+                    "icon": "fas fa-mug-hot",
+                    "color": "bg-gradient-to-r from-pink-100 to-orange-100",
+                    "price": "$24.99",
+                    "description": "Custom ceramic mug with your design"
+                },
+                {
+                    "id": 2,
+                    "name": "Custom T-Shirt",
+                    "icon": "fas fa-tshirt",
+                    "color": "bg-gradient-to-r from-blue-100 to-cyan-100",
+                    "price": "$29.99",
+                    "description": "Premium cotton t-shirt"
+                },
+                {
+                    "id": 3,
+                    "name": "Tote Bag",
+                    "icon": "fas fa-shopping-bag",
+                    "color": "bg-gradient-to-r from-green-100 to-emerald-100",
+                    "price": "$19.99",
+                    "description": "Eco-friendly canvas tote"
+                },
+                {
+                    "id": 4,
+                    "name": "Photo Frame",
+                    "icon": "fas fa-image",
+                    "color": "bg-gradient-to-r from-purple-100 to-pink-100",
+                    "price": "$34.99",
+                    "description": "Wooden frame with custom engraving"
+                },
+                {
+                    "id": 5,
+                    "name": "Journal",
+                    "icon": "fas fa-book",
+                    "color": "bg-gradient-to-r from-yellow-100 to-amber-100",
+                    "price": "$22.99",
+                    "description": "Leather-bound personalized journal"
+                },
+                {
+                    "id": 6,
+                    "name": "Scented Candle",
+                    "icon": "fas fa-fire",
+                    "color": "bg-gradient-to-r from-red-100 to-orange-100",
+                    "price": "$18.99",
+                    "description": "Custom scented soy candle"
+                }
+            ],
+            "emotional": [
+                {
+                    "id": 7,
+                    "name": "Digital Letter",
+                    "icon": "fas fa-envelope",
+                    "color": "bg-gradient-to-r from-indigo-100 to-blue-100",
+                    "price": "$9.99",
+                    "description": "Handwritten digital letter"
+                },
+                {
+                    "id": 8,
+                    "name": "Video Message",
+                    "icon": "fas fa-video",
+                    "color": "bg-gradient-to-r from-rose-100 to-pink-100",
+                    "price": "$14.99",
+                    "description": "Personal video greeting"
+                },
+                {
+                    "id": 9,
+                    "name": "Time Capsule",
+                    "icon": "fas fa-time",
+                    "color": "bg-gradient-to-r from-cyan-100 to-teal-100",
+                    "price": "$12.99",
+                    "description": "Scheduled future message"
+                },
+                {
+                    "id": 10,
+                    "name": "Memory Book",
+                    "icon": "fas fa-book-open",
+                    "color": "bg-gradient-to-r from-violet-100 to-purple-100",
+                    "price": "$39.99",
+                    "description": "Digital photo memory book"
+                }
+            ]
+        };
+
+        const fonts = {
+            "inter": "font-inter",
+            "script": "font-script",
+            "serif": "font-serif",
+            "mono": "font-mono"
+        };
+
+        // Initialize page
+        document.addEventListener("DOMContentLoaded", function() {
+            initializeDesignStudio();
+            setupEventListeners();
+            loadProducts("physical");
+        });
+
+        function initializeDesignStudio() {
+            // Set initial active category
+            document.querySelector(".category-tab.active").classList.add("bg-giftme-primary", "text-white");
+            document.querySelector(".category-tab.active").classList.remove("bg-gray-100", "text-gray-600");
+            
+            // Set initial active font
+            document.querySelector(".font-option").classList.add("border-giftme-primary", "bg-giftme-primary", "bg-opacity-10");
+            
+            // Set initial active color
+            document.querySelector(".color-option").classList.add("ring-2", "ring-offset-2", "ring-giftme-primary");
+        }
+
+        function loadProducts(category) {
+            const productGrid = document.getElementById("product-grid");
+            productGrid.innerHTML = "";
+            
+            products[category].forEach(product => {
+                const productElement = document.createElement("div");
+                productElement.className = "product-card bg-white rounded-xl p-4 shadow-md hover:shadow-lg transition-all cursor-pointer border-2 border-transparent hover:border-giftme-primary";
+                productElement.innerHTML = `
+                    <div class="${product.color} rounded-lg p-4 mb-3 flex items-center justify-center h-24">
+                        <i class="${product.icon} text-3xl text-gray-700"></i>
+                    </div>
+                    <h4 class="font-semibold text-gray-800 mb-1">${product.name}</h4>
+                    <p class="text-sm text-gray-600 mb-2">${product.description}</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-giftme-primary font-bold">${product.price}</span>
+                        <button class="text-giftme-primary hover:text-giftme-secondary">
+                            <i class="fas fa-plus-circle"></i>
+                        </button>
+                    </div>
+                `;
+                
+                productElement.addEventListener("click", () => {
+                    selectProduct(product);
+                });
+                
+                productGrid.appendChild(productElement);
+            });
+        }
+
+        function selectProduct(product) {
+            // Update preview with selected product
+            const preview = document.getElementById("product-preview");
+            const messageElement = document.getElementById("preview-message");
+            
+            // Update product details in preview
+            messageElement.textContent = `Personalized ${product.name}`;
+            
+            // Show notification
+            showNotification(`Selected: ${product.name}`);
+        }
+
+        function setupEventListeners() {
+            // Category tabs
+            document.querySelectorAll(".category-tab").forEach(tab => {
+                tab.addEventListener("click", function() {
+                    document.querySelectorAll(".category-tab").forEach(t => {
+                        t.classList.remove("active", "bg-giftme-primary", "text-white");
+                        t.classList.add("bg-gray-100", "text-gray-600");
+                    });
+                    this.classList.add("active", "bg-giftme-primary", "text-white");
+                    this.classList.remove("bg-gray-100", "text-gray-600");
+                    
+                    const category = this.dataset.category;
+                    loadProducts(category);
+                });
+            });
+
+            // Color options
+            document.querySelectorAll(".color-option").forEach(option => {
+                option.addEventListener("click", function() {
+                    document.querySelectorAll(".color-option").forEach(o => {
+                        o.classList.remove("ring-2", "ring-offset-2", "ring-giftme-primary");
+                    });
+                    this.classList.add("ring-2", "ring-offset-2", "ring-giftme-primary");
+                    
+                    const color = this.dataset.color;
+                    updatePreviewColor(color);
+                });
+            });
+
+            // Font options
+            document.querySelectorAll(".font-option").forEach(option => {
+                option.addEventListener("click", function() {
+                    document.querySelectorAll(".font-option").forEach(o => {
+                        o.classList.remove("border-giftme-primary", "bg-giftme-primary", "bg-opacity-10");
+                    });
+                    this.classList.add("border-giftme-primary", "bg-giftme-primary", "bg-opacity-10");
+                    
+                    const font = this.dataset.font;
+                    updatePreviewFont(font);
+                });
+            });
+
+            // Message input
+            const messageInput = document.getElementById("message-input");
+            messageInput.addEventListener("input", function() {
+                updatePreviewMessage(this.value);
+            });
+
+            // Preview controls
+            document.querySelectorAll(".preview-control").forEach(control => {
+                control.addEventListener("click", function() {
+                    const action = this.dataset.rotate || this.dataset.zoom;
+                    const type = this.dataset.rotate ? "rotate" : "zoom";
+                    handlePreviewControl(action, type);
+                });
+            });
+
+            // Image upload
+            const uploadArea = document.querySelector(".border-dashed");
+            uploadArea.addEventListener("click", function() {
+                triggerImageUpload();
+            });
+
+            // Add to cart button
+            document.querySelector(".bg-giftme-primary").addEventListener("click", function() {
+                addToCart();
+            });
+        }
+
+        function updatePreviewColor(color) {
+            const preview = document.getElementById("product-preview");
+            preview.style.color = color;
+            
+            // Update accent elements
+            const accentElements = preview.querySelectorAll(".text-giftme-primary");
+            accentElements.forEach(el => {
+                el.style.color = color;
+            });
+        }
+
+        function updatePreviewFont(fontClass) {
+            const messageElement = document.getElementById("preview-message");
+            messageElement.className = `text-2xl ${fonts[fontClass]} text-giftme-primary mb-2`;
+        }
+
+        function updatePreviewMessage(message) {
+            const messageElement = document.getElementById("preview-message");
+            const subElement = document.getElementById("preview-submessage");
+            
+            if (message.length > 0) {
+                const words = message.split(" ");
+                messageElement.textContent = words.slice(0, 4).join(" ");
+                subElement.textContent = words.slice(4).join(" ") || "Your personalized message";
+            }
+        }
+
+        function handlePreviewControl(action, type) {
+            const preview = document.querySelector(".preview-3d");
+            
+            if (type === "rotate") {
+                let currentRotation = preview.style.transform.match(/rotate\(([^)]+)\)/);
+                let currentAngle = currentRotation ? parseInt(currentRotation[1]) : 3;
+                
+                if (action === "left") {
+                    currentAngle -= 15;
+                } else {
+                    currentAngle += 15;
+                }
+                
+                preview.style.transform = `rotate(${currentAngle}deg)`;
+            } else {
+                let currentScale = preview.style.transform.match(/scale\(([^)]+)\)/);
+                let scale = currentScale ? parseFloat(currentScale[1]) : 1;
+                
+                if (action === "in") {
+                    scale = Math.min(scale + 0.1, 1.5);
+                } else {
+                    scale = Math.max(scale - 0.1, 0.5);
+                }
+                
+                preview.style.transform = `scale(${scale})`;
+            }
+        }
+
+        function triggerImageUpload() {
+            // In a real implementation, this would trigger a file input
+            const input = document.createElement("input");
+            input.type = "file";
+            input.accept = "image/*";
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        const previewImage = document.getElementById("preview-image");
+                        previewImage.src = event.target.result;
+                        showNotification("Image uploaded successfully!");
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+            input.click();
+        }
+
+        function addToCart() {
+            showNotification("Design added to cart!");
+            
+            // Animate cart icon
+            const cartIcon = document.querySelector(".fa-shopping-cart").parentElement;
+            cartIcon.classList.add("animate-bounce");
+            setTimeout(() => {
+                cartIcon.classList.remove("animate-bounce");
+            }, 1000);
+        }
+
+        function showNotification(message) {
+            // Create notification element
+            const notification = document.createElement("div");
+            notification.className = "fixed top-4 right-4 bg-giftme-primary text-white px-6 py-3 rounded-lg shadow-lg transform translate-x-full opacity-0 transition-all duration-300";
+            notification.textContent = message;
+            notification.id = "temp-notification";
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.classList.remove("translate-x-full", "opacity-0");
+                notification.classList.add("translate-x-0", "opacity-100");
+            }, 10);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.classList.remove("translate-x-0", "opacity-100");
+                notification.classList.add("translate-x-full", "opacity-0");
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        function navigateTo(page) {
+            showNotification(`Navigating to ${page.replace("-", " ")}...`);
+            // In a real application, this would handle routing
+        }
+
+        // Handle window resize for responsive adjustments
+        window.addEventListener("resize", function() {
+            const previewContainer = document.querySelector(".preview-container");
+            if (window.innerWidth < 768) {
+                previewContainer.classList.remove("min-h-[500px]");
+                previewContainer.classList.add("min-h-[400px]");
+            } else {
+                previewContainer.classList.remove("min-h-[400px]");
+                previewContainer.classList.add("min-h-[500px]");
+            }
+        });
+    </script>
+</body>
+</html>

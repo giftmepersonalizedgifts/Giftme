@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base target="_self">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About GiftMe - Our Story, Mission & Vision</title>
+    <meta name="description" content="Learn about GiftMe's journey, mission, and vision to transform gift-giving into meaningful emotional experiences through personalized and customized gifts.">
+    <meta name="keywords" content="about GiftMe, our story, mission, vision, personalized gifts, emotional experiences, custom gifts, gift platform">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#FF6B8B",
+                        "secondary": "#4ECDC4",
+                        "accent": "#FFD166",
+                        "dark": "#1A1A2E",
+                        "light": "#F8F9FA",
+                        "muted": "#6B7280"
+                    },
+                    fontFamily: {
+                        "display": ["Poppins", "sans-serif"],
+                        "body": ["Open Sans", "sans-serif"]
+                    },
+                    animation: {
+                        "fade-in": "fadeIn 1s ease-in-out",
+                        "slide-up": "slideUp 0.8s ease-out"
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            "0%": { opacity: "0" },
+                            "100%": { opacity: "1" }
+                        },
+                        slideUp: {
+                            "0%": { transform: "translateY(30px)", opacity: "0" },
+                            "100%": { transform: "translateY(0)", opacity: "1" }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(255, 107, 139, 0.1) 0%, rgba(255, 209, 102, 0.1) 50%, rgba(78, 205, 196, 0.1) 100%);
+        }
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(to bottom, #FF6B8B, #4ECDC4);
+        }
+        .team-card:hover .team-image {
+            transform: scale(1.05);
+        }
+        .value-card {
+            transition: all 0.3s ease;
+        }
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        .stat-number {
+            background: linear-gradient(135deg, #FF6B8B, #4ECDC4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="font-body text-gray-800 bg-light min-h-screen">
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-50 bg-white shadow-sm">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-20 h-12 bg-gradient-to-w from-giftme-primary to-giftme-secondary rounded-full flex items-center justify-center">
+                        <img src="imgs/1.png" alt="logo">
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#" class="font-medium hover:text-primary transition-colors" onclick="event.preventDefault(); navigateToHome()">Home</a>
+                    <a href="#" class="font-medium hover:text-primary transition-colors" onclick="event.preventDefault(); navigateToShop()">Shop</a>
+                    <a href="#" class="font-medium hover:text-primary transition-colors" onclick="event.preventDefault(); navigateToDesign()">Design Studio</a>
+                    <a href="#" class="font-medium text-primary border-b-2 border-primary" onclick="event.preventDefault(); navigateToAbout()">About</a>
+                    <a href="#" class="font-medium hover:text-primary transition-colors" onclick="event.preventDefault(); navigateToContact()">Contact</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <button class="p-2 hover:bg-gray-100 rounded-full transition-colors">
+                        <i class="fas fa-search text-gray-600"></i>
+                    </button>
+                    <button class="bg-primary text-white px-6 py-2 rounded-full font-medium hover:bg-opacity-90 transition-colors">
+                        Create Gift
+                    </button>
+                    <button class="md:hidden p-2">
+                        <i class="fas fa-bars text-gray-700"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero About Section -->
+        <section class="hero-gradient py-16 md:py-24">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto text-center animate-fade-in">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-dark mb-6">
+                        Our <span class="text-primary">Story</span> of <span class="text-secondary">Emotional</span> Gifting
+                    </h1>
+                    <p class="text-xl text-muted mb-8 leading-relaxed">
+                        GiftMe was born from a simple belief: every gift should tell a story, capture an emotion, 
+                        and create a memory that lasts forever. We're not just selling products; we're facilitating 
+                        meaningful connections through personalized expressions of love, gratitude, and celebration.
+                    </p>
+                    <div class="flex justify-center space-x-4">
+                        <button class="bg-primary text-white px-8 py-3 rounded-full font-medium hover:bg-opacity-90 transition-colors" onclick="scrollToMission()">
+                            Our Mission
+                        </button>
+                        <button class="bg-white text-dark border border-gray-300 px-8 py-3 rounded-full font-medium hover:bg-gray-50 transition-colors" onclick="scrollToTeam()">
+                            Meet Our Team
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission & Vision -->
+        <section id="mission" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="animate-slide-up">
+                        <div class="inline-flex items-center px-4 py-2 rounded-full bg-primary bg-opacity-10 text-primary font-medium mb-6">
+                            <i class="fas fa-bullseye mr-2"></i> Our Mission
+                        </div>
+                        <h2 class="text-3xl md:text-4xl font-display font-bold text-dark mb-6">
+                            Transforming Gift-Giving Into Emotional Experiences
+                        </h2>
+                        <p class="text-lg text-muted mb-6 leading-relaxed">
+                            At GiftMe, we believe that the most precious gifts aren't the most expensive ones, 
+                            but those that carry personal meaning and emotional value. Our mission is to empower 
+                            everyone to create gifts that truly matter - gifts that speak from the heart and 
+                            create lasting memories.
+                        </p>
+                        <p class="text-lg text-muted leading-relaxed">
+                            We're building more than an e-commerce platform; we're creating a space where 
+                            creativity meets emotion, where every gift becomes a vessel for love, appreciation, 
+                            and human connection.
+                        </p>
+                    </div>
+                    
+                    <div class="relative">
+                        <img src="https://picsum.photos/600/400?random=6" alt="Team collaborating on gift design" class="rounded-2xl shadow-xl">
+                        <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-lg max-w-xs">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 rounded-full bg-accent flex items-center justify-center mr-4">
+                                    <i class="fas fa-heart text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-lg">"Every gift tells a story"</p>
+                                    <p class="text-gray-600 text-sm">- GiftMe Philosophy</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mt-20">
+                    <div class="order-2 lg:order-1">
+                        <img src="https://picsum.photos/600/400?random=7" alt="Vision for personalized gifting future" class="rounded-2xl shadow-xl">
+                    </div>
+                    
+                    <div class="order-1 lg:order-2 animate-slide-up">
+                        <div class="inline-flex items-center px-4 py-2 rounded-full bg-secondary bg-opacity-10 text-secondary font-medium mb-6">
+                            <i class="fas fa-eye mr-2"></i> Our Vision
+                        </div>
+                        <h2 class="text-3xl md:text-4xl font-display font-bold text-dark mb-6">
+                            A World Where Every Gift is Meaningful
+                        </h2>
+                        <p class="text-lg text-muted mb-6 leading-relaxed">
+                            We envision a future where gift-giving transcends material value and becomes 
+                            a genuine expression of human connection. Where people don't just give things, 
+                            but share experiences, memories, and emotions through thoughtfully crafted presents.
+                        </p>
+                        <p class="text-lg text-muted leading-relaxed">
+                            Our vision extends beyond today's marketplace. We're working toward becoming 
+                            the global platform for emotional gifting, where millions can create, share, 
+                            and cherish personalized gifts that make life's special moments unforgettable.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Story Timeline -->
+        <section class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-display font-bold text-dark mb-4">Our Journey</h2>
+                    <p class="text-xl text-muted max-w-3xl mx-auto">From a simple idea to a platform transforming how people give and receive gifts</p>
+                </div>
+                
+                <div class="max-w-4xl mx-auto">
+                    <div class="relative">
+                        <!-- Timeline Line -->
+                        <div class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-gradient-to-b from-primary to-secondary"></div>
+                        
+                        <!-- Timeline Items -->
+                        <div class="space-y-12">
+                            <!-- Item 1 -->
+                            <div class="relative flex flex-col md:flex-row items-center">
+                                <div class="md:w-1/2 md:pr-12 md:text-right mb-6 md:mb-0 order-2 md:order-1">
+                                    <div class="bg-white p-6 rounded-2xl shadow-lg">
+                                        <div class="text-primary font-bold text-lg mb-2">2018</div>
+                                        <h3 class="text-xl font-display font-bold text-dark mb-3">The Inspiration</h3>
+                                        <p class="text-muted">Founder Sarah Chen struggled to find meaningful gifts for her grandmother's 80th birthday. This sparked the idea for a platform where anyone could create personalized, emotional gifts.</p>
+                                    </div>
+                                </div>
+                                <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-8 h-8 rounded-full bg-primary border-4 border-white z-10 order-1 md:order-2"></div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                            
+                            <!-- Item 2 -->
+                            <div class="relative flex flex-col md:flex-row items-center">
+                                <div class="md:w-1/2 md:pr-12 order-3"></div>
+                                <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-8 h-8 rounded-full bg-secondary border-4 border-white z-10 order-1"></div>
+                                <div class="md:w-1/2 md:pl-12 mb-6 md:mb-0 order-2">
+                                    <div class="bg-white p-6 rounded-2xl shadow-lg">
+                                        <div class="text-secondary font-bold text-lg mb-2">2019</div>
+                                        <h3 class="text-xl font-display font-bold text-dark mb-3">First Prototype</h3>
+                                        <p class="text-muted">Launched a basic web app allowing users to customize mugs and t-shirts. Received overwhelming positive feedback from early users who loved the emotional connection.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Item 3 -->
+                            <div class="relative flex flex-col md:flex-row items-center">
+                                <div class="md:w-1/2 md:pr-12 md:text-right mb-6 md:mb-0 order-2 md:order-1">
+                                    <div class="bg-white p-6 rounded-2xl shadow-lg">
+                                        <div class="text-primary font-bold text-lg mb-2">2020</div>
+                                        <h3 class="text-xl font-display font-bold text-dark mb-3">Platform Launch</h3>
+                                        <p class="text-muted">Officially launched GiftMe with expanded product categories and the innovative "Emotional Gifts" section featuring timed messages and video greetings.</p>
+                                    </div>
+                                </div>
+                                <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-8 h-8 rounded-full bg-accent border-4 border-white z-10 order-1 md:order-2"></div>
+                                <div class="md:w-1/2 md:pl-12 order-3"></div>
+                            </div>
+                            
+                            <!-- Item 4 -->
+                            <div class="relative flex flex-col md:flex-row items-center">
+                                <div class="md:w-1/2 md:pr-12 order-3"></div>
+                                <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-8 h-8 rounded-full bg-dark border-4 border-white z-10 order-1"></div>
+                                <div class="md:w-1/2 md:pl-12 mb-6 md:mb-0 order-2">
+                                    <div class="bg-white p-6 rounded-2xl shadow-lg">
+                                        <div class="text-dark font-bold text-lg mb-2">2023 - Present</div>
+                                        <h3 class="text-xl font-display font-bold text-dark mb-3">Global Community</h3>
+                                        <p class="text-muted">Served over 50,000 customers worldwide, expanded to 15+ countries, and introduced AI-assisted gift design tools. Continuing to innovate emotional gifting experiences.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Values -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-display font-bold text-dark mb-4">Our Core Values</h2>
+                    <p class="text-xl text-muted max-w-3xl mx-auto">The principles that guide everything we do at GiftMe</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="value-card bg-white rounded-2xl shadow-lg p-8 text-center border border-gray-100">
+                        <div class="w-20 h-20 rounded-full bg-primary bg-opacity-10 flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-heart text-primary text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-display font-bold text-dark mb-4">Emotional Connection</h3>
+                        <p class="text-muted">We believe gifts should create emotional bonds, not just exchange items. Every product is designed to foster meaningful connections.</p>
+                    </div>
+                    
+                    <div class="value-card bg-white rounded-2xl shadow-lg p-8 text-center border border-gray-100">
+                        <div class="w-20 h-20 rounded-full bg-secondary bg-opacity-10 flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-lightbulb text-secondary text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-display font-bold text-dark mb-4">Creative Empowerment</h3>
+                        <p class="text-muted">We empower everyone to be a creator. Our tools make personalization accessible, regardless of design experience.</p>
+                    </div>
+                    
+                    <div class="value-card bg-white rounded-2xl shadow-lg p-8 text-center border border-gray-100">
+                        <div class="w-20 h-20 rounded-full bg-accent bg-opacity-10 flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-handshake text-accent text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-display font-bold text-dark mb-4">Authenticity</h3>
+                        <p class="text-muted">We champion genuine expressions. Every gift should reflect the true feelings and personality of both giver and receiver.</p>
+                    </div>
+                    
+                    <div class="value-card bg-white rounded-2xl shadow-lg p-8 text-center border border-gray-100">
+                        <div class="w-20 h-20 rounded-full bg-dark bg-opacity-10 flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-infinity text-dark text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-display font-bold text-dark mb-4">Sustainable Joy</h3>
+                        <p class="text-muted">We create gifts that bring lasting happiness. Our focus is on quality, meaning, and memories that endure over time.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistics -->
+        <section class="py-16 bg-gradient-to-r from-primary to-secondary text-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-display font-bold mb-4">GiftMe By The Numbers</h2>
+                    <p class="text-xl opacity-90 max-w-3xl mx-auto">Our impact in creating meaningful gift experiences worldwide</p>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <div class="text-5xl font-bold mb-2 stat-number">50,000+</div>
+                        <p class="opacity-90">Happy Customers</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="text-5xl font-bold mb-2 stat-number">15+</div>
+                        <p class="opacity-90">Countries Served</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="text-5xl font-bold mb-2 stat-number">100,000+</div>
+                        <p class="opacity-90">Gifts Created</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="text-5xl font-bold mb-2 stat-number">98%</div>
+                        <p class="opacity-90">Customer Satisfaction</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section id="team" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-display font-bold text-dark mb-4">Meet Our Creative Team</h2>
+                    <p class="text-xl text-muted max-w-3xl mx-auto">The passionate individuals behind GiftMe's mission to transform gifting</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="team-card bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <div class="relative overflow-hidden">
+                            <img src="https://picsum.photos/400/300?random=8" alt="Sarah Chen - Founder & CEO" class="w-full h-64 object-cover team-image transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-display font-bold text-dark mb-1">Sarah Chen</h3>
+                            <p class="text-primary font-medium mb-4">Founder & CEO</p>
+                            <p class="text-muted mb-4">"I started GiftMe because I believe every gift should carry emotional weight and personal meaning. Our platform is my dream come true."</p>
+                            <div class="flex space-x-3">
+                                <a href="#" class="text-gray-400 hover:text-primary transition-colors"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="text-gray-400 hover:text-primary transition-colors"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <div class="relative overflow-hidden">
+                            <img src="https://picsum.photos/400/300?random=9" alt="Marcus Rodriguez - Head of Design" class="w-full h-64 object-cover team-image transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-display font-bold text-dark mb-1">Marcus Rodriguez</h3>
+                            <p class="text-primary font-medium mb-4">Head of Design</p>
+                            <p class="text-muted mb-4">"Design isn't just about aesthetics; it's about creating emotional experiences. Every template we build tells a potential story."</p>
+                            <div class="flex space-x-3">
+                                <a href="#" class="text-gray-400 hover:text-primary transition-colors"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="text-gray-400 hover:text-primary transition-colors"><i class="fab fa-dribbble"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <div class="relative overflow-hidden">
+                            <img src="https://picsum.photos/400/300?random=10" alt="Priya Sharma - Emotional Experience Director" class="w-full h-64 object-cover team-image transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-display font-bold text-dark mb-1">Priya Sharma</h3>
+                            <p class="text-primary font-medium mb-4">Emotional Experience Director</p>
+                            <p class="text-muted mb-4">"My role is to ensure every gift created on our platform carries genuine emotional value and creates lasting memories."</p>
+                            <div class="flex space-x-3">
+                                <a href="#" class="text-gray-400 hover:text-primary transition-colors"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="text-gray-400 hover:text-primary transition-colors"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-12">
+                    <p class="text-lg text-muted mb-6">We're always looking for passionate individuals who believe in the power of meaningful gifting.</p>
+                    <button class="bg-primary text-white px-8 py-3 rounded-full font-medium hover:bg-opacity-90 transition-colors" onclick="navigateToCareers()">
+                        Join Our Team
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="py-16 bg-dark text-white">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl md:text-4xl font-display font-bold mb-6">Ready to Create Meaningful Gifts?</h2>
+                <p class="text-xl mb-8 max-w-2xl mx-auto opacity-90">
+                    Join our community of thoughtful gift-givers and start creating emotional experiences today.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                    <button class="bg-primary text-white px-8 py-3 rounded-full font-medium hover:bg-opacity-90 transition-colors text-lg" onclick="navigateToDesign()">
+                        Start Creating
+                    </button>
+                    <button class="bg-white text-dark px-8 py-3 rounded-full font-medium hover:bg-opacity-90 transition-colors text-lg" onclick="navigateToContact()">
+                        Contact Us
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+                            <i class="fas fa-gift text-white"></i>
+                        </div>
+                        <span class="text-2xl font-display font-bold">Gift<span class="text-primary">Me</span></span>
+                    </div>
+                    <p class="text-gray-400 mb-6">
+                        Creating personalized gifts that capture emotions, memories, and heartfelt messages since 2018.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="fab fa-pinterest-p"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-display font-bold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors" onclick="event.preventDefault(); navigateToHome()">Home</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors" onclick="event.preventDefault(); navigateToShop()">Shop Gifts</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors" onclick="event.preventDefault(); navigateToDesign()">Design Studio</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors" onclick="event.preventDefault(); navigateToAbout()">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors" onclick="event.preventDefault(); navigateToContact()">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-display font-bold mb-6">Resources</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors" onclick="event.preventDefault(); navigateToBlog()">Blog & Ideas</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors" onclick="event.preventDefault(); navigateToFAQ()">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors" onclick="event.preventDefault(); navigateToShipping()">Shipping Info</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors" onclick="event.preventDefault(); navigateToReturns()">Returns Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors" onclick="event.preventDefault(); navigateToPrivacy()">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-display font-bold mb-6">Stay Inspired</h3>
+                    <p class="text-gray-400 mb-4">Get creative gift ideas and emotional gifting tips</p>
+                    <div class="flex mb-4">
+                        <input type="email" placeholder="Your email" class="bg-gray-800 text-white px-4 py-3 rounded-l-lg flex-grow focus:outline-none focus:ring-2 focus:ring-primary">
+                        <button class="bg-primary px-6 py-3 rounded-r-lg font-medium hover:bg-opacity-90 transition-colors" onclick="subscribeNewsletter()">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    <p class="text-gray-500 text-sm">Join 20,000+ subscribers who receive our weekly inspiration</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
+                <p>&copy; 2018-2024 GiftMe. All rights reserved. Turning emotions into unforgettable gifts.</p>
+                <p class="mt-2 text-sm">Made with <i class="fas fa-heart text-primary"></i> for meaningful connections worldwide</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Define data at the beginning
+        const teamMembers = [
+            {
+                "id": 1,
+                "name": "Sarah Chen",
+                "role": "Founder & CEO",
+                "quote": "I started GiftMe because I believe every gift should carry emotional weight and personal meaning. Our platform is my dream come true.",
+                "image": "https://picsum.photos/400/300?random=8",
+                "social": {
+                    "linkedin": "#",
+                    "twitter": "#"
+                }
+            },
+            {
+                "id": 2,
+                "name": "Marcus Rodriguez",
+                "role": "Head of Design",
+                "quote": "Design isn't just about aesthetics; it's about creating emotional experiences. Every template we build tells a potential story.",
+                "image": "https://picsum.photos/400/300?random=9",
+                "social": {
+                    "linkedin": "#",
+                    "dribbble": "#"
+                }
+            },
+            {
+                "id": 3,
+                "name": "Priya Sharma",
+                "role": "Emotional Experience Director",
+                "quote": "My role is to ensure every gift created on our platform carries genuine emotional value and creates lasting memories.",
+                "image": "https://picsum.photos/400/300?random=10",
+                "social": {
+                    "linkedin": "#",
+                    "instagram": "#"
+                }
+            }
+        ];
+
+        const companyStats = [
+            { "label": "Happy Customers", "value": "50,000+", "color": "primary" },
+            { "label": "Countries Served", "value": "15+", "color": "secondary" },
+            { "label": "Gifts Created", "value": "100,000+", "color": "accent" },
+            { "label": "Customer Satisfaction", "value": "98%", "color": "dark" }
+        ];
+
+        const timelineEvents = [
+            {
+                "year": "2018",
+                "title": "The Inspiration",
+                "description": "Founder Sarah Chen struggled to find meaningful gifts for her grandmother's 80th birthday. This sparked the idea for a platform where anyone could create personalized, emotional gifts.",
+                "color": "primary"
+            },
+            {
+                "year": "2019",
+                "title": "First Prototype",
+                "description": "Launched a basic web app allowing users to customize mugs and t-shirts. Received overwhelming positive feedback from early users who loved the emotional connection.",
+                "color": "secondary"
+            },
+            {
+                "year": "2020",
+                "title": "Platform Launch",
+                "description": "Officially launched GiftMe with expanded product categories and the innovative \"Emotional Gifts\" section featuring timed messages and video greetings.",
+                "color": "accent"
+            },
+            {
+                "year": "2023",
+                "title": "Global Community",
+                "description": "Served over 50,000 customers worldwide, expanded to 15+ countries, and introduced AI-assisted gift design tools. Continuing to innovate emotional gifting experiences.",
+                "color": "dark"
+            }
+        ];
+
+        // Navigation functions
+        function navigateToHome() {
+            console.log("Navigating to Home");
+            alert("In a real implementation, this would navigate to the home page");
+        }
+
+        function navigateToShop() {
+            console.log("Navigating to Shop");
+            alert("In a real implementation, this would navigate to the shop page");
+        }
+
+        function navigateToDesign() {
+            console.log("Navigating to Design Studio");
+            alert("In a real implementation, this would navigate to the design studio");
+        }
+
+        function navigateToAbout() {
+            console.log("Already on About page");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        function navigateToContact() {
+            console.log("Navigating to Contact");
+            alert("In a real implementation, this would navigate to the contact page");
+        }
+
+        function navigateToCareers() {
+            console.log("Navigating to Careers");
+            alert("In a real implementation, this would navigate to the careers page");
+        }
+
+        // Scroll functions
+        function scrollToMission() {
+            const missionSection = document.getElementById("mission");
+            if (missionSection) {
+                missionSection.scrollIntoView({ behavior: "smooth" });
+            }
+        }
+
+        function scrollToTeam() {
+            const teamSection = document.getElementById("team");
+            if (teamSection) {
+                teamSection.scrollIntoView({ behavior: "smooth" });
+            }
+        }
+
+        // Newsletter subscription
+        function subscribeNewsletter() {
+            const emailInput = document.querySelector("input[type='email']");
+            if (emailInput) {
+                const email = emailInput.value.trim();
+                if (email && validateEmail(email)) {
+                    alert("Thank you for subscribing to GiftMe's inspiration newsletter! You'll receive creative gift ideas weekly.");
+                    emailInput.value = "";
+                } else {
+                    alert("Please enter a valid email address.");
+                }
+            }
+        }
+
+        // Email validation
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        // Initialize page animations
+        document.addEventListener("DOMContentLoaded", function() {
+            // Add animation classes to elements as they come into view
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("animate-fade-in");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all sections
+            document.querySelectorAll("section").forEach(section => {
+                observer.observe(section);
+            });
+
+            // Initialize team card hover effects
+            document.querySelectorAll(".team-card").forEach(card => {
+                card.addEventListener("mouseenter", function() {
+                    const image = this.querySelector(".team-image");
+                    if (image) {
+                        image.style.transform = "scale(1.05)";
+                    }
+                });
+                
+                card.addEventListener("mouseleave", function() {
+                    const image = this.querySelector(".team-image");
+                    if (image) {
+                        image.style.transform = "scale(1)";
+                    }
+                });
+            });
+
+            // Add click event to newsletter input
+            const newsletterInput = document.querySelector("input[type='email']");
+            if (newsletterInput) {
+                newsletterInput.addEventListener("keypress", function(e) {
+                    if (e.key === "Enter") {
+                        subscribeNewsletter();
+                    }
+                });
+            }
+        });
+
+        // Company philosophy display
+        function displayCompanyPhilosophy() {
+            const philosophy = [
+                "Every gift tells a story",
+                "Emotion over expense",
+                "Personalization creates connection",
+                "Memories last longer than materials",
+                "Creativity is for everyone"
+            ];
+            
+            let displayText = "Our Philosophy:\n\n";
+            philosophy.forEach((item, index) => {
+                displayText += `${index + 1}. ${item}\n`;
+            });
+            
+            alert(displayText);
+        }
+
+        // Add philosophy button to header (for demo)
+        document.addEventListener("DOMContentLoaded", function() {
+            const header = document.querySelector("header nav .flex");
+            if (header) {
+                const philosophyBtn = document.createElement("button");
+                philosophyBtn.className = "hidden md:inline-block text-gray-600 hover:text-primary transition-colors ml-4";
+                philosophyBtn.innerHTML = '<i class="fas fa-quote-left mr-2"></i>Philosophy';
+                philosophyBtn.onclick = displayCompanyPhilosophy;
+                header.appendChild(philosophyBtn);
+            }
+        });
+    </script>
+</body>
+</html>
